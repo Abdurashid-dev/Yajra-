@@ -20,8 +20,10 @@ class UserController extends Controller
      */
     public function getUsers()
     {
-       return DataTables::of(User::query())
-           ->rawColumns(['action', 'actions'])
-           ->make(true);
+        return DataTables::of(User::query())
+            ->addColumn('action', function ($user) {
+                return '<a href="#" class="btn btn-xs btn-primary">Edit</a>';
+            })
+            ->make(true);
     }
 }

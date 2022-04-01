@@ -17,7 +17,7 @@
 <div class="container p-3">
     <h1>Welcome to Yajra</h1>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <table class="table table-bordered table-hover" id="myTable">
                 <thead>
                 <tr>
@@ -26,6 +26,7 @@
                     <th>Email</th>
                     <th>Created at</th>
                     <th>Updated at</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
             </table>
@@ -39,18 +40,19 @@
         $('#myTable').DataTable({
             processing: true,
             serverSide: true,
+            // resposive: true,
             ajax: '{{ route('users.index') }}',
-            buttons: [
-                'copy', 'excel', 'pdf'
-            ],
             columns:[
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
                 { data: 'email', name: 'email' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'updated_at', name: 'updated_at' },
-                { data: 'action', name: 'action' }
+                { data: 'action', name: 'action', orderable: false, searchable: false }
             ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Uzbek.json"
+            }
         });
     });
 </script>
